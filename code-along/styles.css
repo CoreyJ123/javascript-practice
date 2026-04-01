@@ -19,12 +19,16 @@ thead {
     font-weight: bold;
 }
 
-.canucks-ftw {
+.home-Win {
     color: green;
 }
 
-.canucks-lose {
+.home-Lose {
     color: darkred;
+}
+
+.home-Draw {
+    color: default;
 }
 
 caption {

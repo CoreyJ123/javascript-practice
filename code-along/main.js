@@ -6,7 +6,6 @@ const seasonResults = [
         canucksScore: 4,
         opponentTeam: "Calgary Flames",
         opponentScore: 2,
-        canucksWin: true,
     },
     {
         gameDate: "2026-01-15",
@@ -14,7 +13,6 @@ const seasonResults = [
         canucksScore: 3,
         opponentTeam: "Edmonton Oilers",
         opponentScore: 5,
-        canucksWin: false,
     },
     {
         gameDate: "2026-01-18",
@@ -22,7 +20,6 @@ const seasonResults = [
         canucksScore: 2,
         opponentTeam: "Toronto Maple Leafs",
         opponentScore: 1,
-        canucksWin: true,
     },
     {
         gameDate: "2026-01-21",
@@ -30,7 +27,6 @@ const seasonResults = [
         canucksScore: 1,
         opponentTeam: "Seattle Kraken",
         opponentScore: 3,
-        canucksWin: false,
     },
     {
         gameDate: "2026-01-24",
@@ -38,7 +34,6 @@ const seasonResults = [
         canucksScore: 5,
         opponentTeam: "San Jose Sharks",
         opponentScore: 2,
-        canucksWin: true,
     },
     {
         gameDate: "2026-01-27",
@@ -46,7 +41,6 @@ const seasonResults = [
         canucksScore: 3,
         opponentTeam: "Los Angeles Kings",
         opponentScore: 3,
-        canucksWin: false, // assuming OT/shootout loss not tracked separately
     },
     {
         gameDate: "2026-01-30",
@@ -54,24 +48,50 @@ const seasonResults = [
         canucksScore: 6,
         opponentTeam: "Anaheim Ducks",
         opponentScore: 4,
-        canucksWin: true,
     }
 ]
+
+function matchOutCome(homeScore, opponentScore) {
+
+    if(homeScore == opponentScore){
+        return home-Draw;
+    }   else if(homeScore > opponentScore)
+    {
+        return home-Win;
+    } else
+    {
+        return home-Lose;
+    }
+}
 
 const resultsTable = document.querySelector("#season-results-table");
 console.log(resultsTable);
 
 function createResultRow(gameData) {
-    const winOrLose = gameData.canucksWin ? "canucks-ftw" : "canucks-lose";
-
+    const winOrDrawOrLose = matchOutCome(gameData.canucksScore, gameData.opponentScore);
+    let gameResult;
+    switch(winOrDrawOrLose){
+        case home-draw:
+            gameResult = "Draw"
+            break;
+        case home-win:
+            gameResult = "Win"
+            break;
+        case home-lose:
+            gameResult = "Lose"
+            break;
+        default:
+            gameResult = "undefined"
+            break;
+    }
     const resultRow = `
-    <tr class ="${winOrLose}">
+    <tr class ="${winOrDrawOrLose}">
         <td>${gameData.gameDate}</td>
         <td>${gameData.gameLocation}</td>
         <td>${gameData.canucksScore}</td>
         <td>${gameData.opponentTeam}</td>
         <td>${gameData.opponentScore}</td>
-        <td>${gameData.canucksWin}</td>
+        <td>${gameResult}</td>
     </tr>
     `;
     return resultRow;
