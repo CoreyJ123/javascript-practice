@@ -80,7 +80,7 @@ function createResultRow(gameData) {
 function showAllResults(resultsList) {
     for (result of resultsList) {
         const currentRow = createResultRow(result);
-        console.log(currentRow);
+        resultsTable.innerHTML += currentRow;
     }
 }
 showAllResults(seasonResults);
