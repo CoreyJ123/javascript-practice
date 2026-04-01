@@ -62,8 +62,10 @@ const resultsTable = document.querySelector("#season-results-table");
 console.log(resultsTable);
 
 function createResultRow(gameData) {
+    const winOrLose = gameData.canucksWin ? "canucks-ftw" : "canucks-lose";
+
     const resultRow = `
-    <tr>
+    <tr class ="${winOrLose}">
         <td>${gameData.gameDate}</td>
         <td>${gameData.gameLocation}</td>
         <td>${gameData.canucksScore}</td>
