@@ -6,9 +6,9 @@
     <title>Pokedex</title>
 </head>
 <body>
-    <div id="container">
+    <ul id="container"></ul>
 
-    </div>
+    <aside id="pokeDetContainer"></aside>
 
     <script defer>
         const url="https://pokeapi.co/api/v2/pokemon?limit=11&offset=51"
@@ -20,8 +20,10 @@
 
         function displayResults(results){
             const pokeBowl = document.querySelector("#container");
+            console.log(results);
             for(mon of results) {
-                const pokemonItem = `<div>
+                const pokemonItem = `<div class="Box">
+                        <div class="PokeIMG">IMG</div>
                         <h2 id="${mon.name}" slot="${mon.url}">${mon.name}</h2>
                     </div>`;
                 pokeBowl.innerHTML += pokemonItem;
@@ -35,7 +37,6 @@
             });
         }
 
-
         getPoke(url);
         
         async function getIndividualOne(url){
@@ -47,12 +48,43 @@
     </script>
 
     <style>
-        #container{
-            border:1rem blue;
+
+        .Box{
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: baseline;
+            height: 300px;
+            width: 200px;
+            padding: 5px;
+            margin: 3px;
+            border: 3px solid black;
+            border-radius: 6px;
+        }
+        .Box h2{
+            display: flex;
+            width: stretch;
+            margin: 5px;
+            border: 1px solid black;
+            text-transform: capitalize;
         }
 
-        #container h2{
-            text-transform: capitalize;
+        .Box > .PokeIMG{
+            height: stretch;
+            width: stretch;
+            margin: 5px;
+            border: 1px solid black;
+        }
+
+        #container{
+            display: grid;
+            grid: auto-flow / 1fr 1fr 1fr;
+            flex-wrap: wrap;
+            border: 4px solid black;
+        }
+
+        #pokeDetContainer{
+            display: flex;
         }
     </style>
 </body>
