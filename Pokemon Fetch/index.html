@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+
+    <script defer>
+        const url="https://pokeapi.co/api/v2/pokemon?limit=11&offset=51"
+        async function getPoke() {
+            const res = await fetch(url);
+            const data = await res.json();
+            displayResults(data.results);
+        }
+
+        function displayResults(results){
+            const pokeBowl = document.querySelector("#container");
+            for(mon of results) {
+                const pokemonItem = `<div>
+                        <h2 id="${mon.name}" slot="${mon.url}">${mon.name}</h2>
+                    </div>`;
+                pokeBowl.innerHTML += pokemonItem;
+            }  
+            let pokeList = document.querySelectorAll("h2");
+            console.log(pokeList);
+            pokeList.forEach(element => {
+                element.addEventListener("click", (e) => {
+                    getIndividualOne(e.target.slot);
+                })
+            });
+        }
+
+
+        getPoke(url);
+        
+        async function getIndividualOne(url){
+            const res = await fetch(url);
+            const one = await res.json();
+            console.log(one);
+        }
+
+    </script>
+
+    <style>
+        #container{
+            border:1rem blue;
+        }
+
+        #container h2{
+            text-transform: capitalize;
+        }
+    </style>
+</body>
+</html>

@@ -53,15 +53,15 @@ const seasonResults = [
 
 function matchOutCome(homeScore, opponentScore) {
 
-    if(homeScore == opponentScore){
-        return home-Draw;
-    }   else if(homeScore > opponentScore)
-    {
-        return home-Win;
-    } else
-    {
-        return home-Lose;
+    let result;
+    if(homeScore == opponentScore) {
+        result = "home-Draw";
+    } else if(homeScore > opponentScore) {
+        result = "home-Win";
+    } else {
+        result = "home-Lose";
     }
+    return result;
 }
 
 const resultsTable = document.querySelector("#season-results-table");
@@ -71,13 +71,13 @@ function createResultRow(gameData) {
     const winOrDrawOrLose = matchOutCome(gameData.canucksScore, gameData.opponentScore);
     let gameResult;
     switch(winOrDrawOrLose){
-        case home-draw:
+        case "home-Draw":
             gameResult = "Draw"
             break;
-        case home-win:
+        case "home-Win":
             gameResult = "Win"
             break;
-        case home-lose:
+        case "home-Lose":
             gameResult = "Lose"
             break;
         default:
