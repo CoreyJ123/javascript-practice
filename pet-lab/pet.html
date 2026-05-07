@@ -4,6 +4,7 @@
     <title>Pet Adoption Centre</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
+        ul { list-style: none;}
         .pet { border: 2px solid #ccc; margin: 10px; padding: 15px; }
         .available { border-color: green; }
         .adopted { border-color: red; opacity: 0.5; }
@@ -12,29 +13,47 @@
 <body>
     <h1>Happy Paws Adoption Centre</h1>
     <div id="pet-list"></div>
-    <div class="${cssClass}"> </div>
-
 
     <script>
         // Your JavaScript code goes here
         let pets = [
             { name: "Garfield", type: "cat", age: 3, adopted: false },
             { name: "Rover", type: "dog", age: 2, adopted: false},
-            { name: "Dutch", type: "dog", age: 6, adopted: true},
-            { name: "Skye", type: "cat", age: 4, adopted: true}
+            { name: "Dutch", type: "dog", age: 6, adopted: false},
+            { name: "Skye", type: "cat", age: 4, adopted: false}
         ];
-
+        
         function displayPet(pet){
-            let html = `<div>The Pet's name is ${pet.name}</div>`;
-            let cssClass = pet.adopted ? "pet adopted" : "pet available";
+            let cssClass = pet.adopted ? "Adopted" : "Available";
+            let html = `<ul class="${cssClass}">
+                <li>Pet name is ${pet.name}</li>
+                <li>Species: ${pet.type}</li>
+                <li>Age: ${pet.age}</li>
+                <li>Adopted: ${pet.adopted}</li>
+                </ul>`;
+            return html;
         }
 
         function showAllPets(){
-            getElementByID 
-            for(pet in of pets){
-                displayPet(pet)
+            const petList = document.getElementById("pet-list") 
+            let contents = "";
+            for(let pet of pets){
+                contents += displayPet(pet);
             }
+            petList.innerHTML = contents;
         }
+
+        function adoptPet(petName){
+            for(let pet of pets){
+                if(petName == pet.name){
+                    pet.adopted = true;
+                }
+            }
+            showAllPets();
+        }
+
+        showAllPets();
+        adoptPet("Dutch");
     </script>
 </body>
 </html>
