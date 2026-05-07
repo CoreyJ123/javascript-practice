@@ -2,19 +2,35 @@
 <html>
 <head>
     <title>My Quiz</title>
+    <link ref="stylesheet" src="style.css">
     <!-- Attach your stylesheet here -->
 </head>
 <body>
     <h1>My Awesome Quiz</h1>
     <form id="quiz-form">
         <!-- Add your questions here -->
-        <label for="name">Question 1: who is the best dog?</label>
-        <input type="text" id="q1" name="q1" required />
-        <button type="submit" id="submit-btn">Check Answers</button>
-        <br>
-        <label for="name">Question 2: What is 5 + 3?</label>
-        <input type="radio" id="q2" name="q2" required />
-        <button type="submit" id="submit-btn">Check Answers</button>
+         <ul>
+            <li>
+                <label for="name">Question 1: who is the best dog?</label>
+                    <div>
+                        <input type="radio" id="buddy" value="buddy" name="q1" required />
+                        <label for="buddy">Buddy</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="bruce" value="bruce" name="q1" required />
+                        <label for="bruce">Bruce</label>
+                    </div>
+            </li>
+            <li>
+                <label for="name">Question 2: What is 5 + 3?</label>
+                <input type="text" id="q2" name="q2" required />
+            </li>
+            <li>
+                <label for="name">Question 3: What is 10 x 5?</label>
+                <input type="text" id="q3" name="q3" required />
+            </li>
+            <button type="submit" id="submit-btn">Check Answers</button>
+        </ul>
     </form>
     <div id="results">
         <dl>
@@ -23,10 +39,6 @@
         </dl>
     </div>
     
-    <!-- Attach your script here -->
-     <script src="script.js" defer>
-
-
-     </script>
+     <script src="script.js" defer></script>
 </body>
 </html>
