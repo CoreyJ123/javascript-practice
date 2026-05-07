@@ -12,12 +12,14 @@ scoreDisplay.innerHTML = playerScore;
 // Get the answers from the form
 const quiz = document.querySelector("#quiz-form")
 quiz.addEventListener("submit", (e) => {
-    const q1answer = document.querySelector("#q1");
-    const q2answer = document.querySelector("#q2").value;
-    const q3answer = document.querySelector("#q3").value;
+    const question = document.querySelector("input[id='q1']:checked");
+    checkanswer(question.id, question.value);
     e.preventDefault();
+    })
 
+function checkanswer(qNum, q1answer) {
     // Compare them with the correct answers
+
     if(q1answer === answers.q1){
         playerScore++;
         console.log("Yes!! Your score is: " + playerScore);
@@ -39,7 +41,9 @@ quiz.addEventListener("submit", (e) => {
     }else{
         console.log("Actually it's 50");
     }
-})
+}
+    
+
 
 
 
